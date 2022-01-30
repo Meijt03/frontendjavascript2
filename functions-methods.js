@@ -9,8 +9,17 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
-
-
+function getEmailDomain(email) {
+    const getIndexNumber = email.indexOf("@");
+    const domain=email.substring(getIndexNumber + 1);
+    return domain;
+}
+const domain1=getEmailDomain("n.eeken@novi-education.nl");
+const domain2=getEmailDomain("t.mellink@novi.nl");
+const domain3=getEmailDomain("a.wiersma@outlook.com");
+console.log(domain1);
+console.log(domain2);
+console.log(domain3);
 
 /* Opdracht  2 */
 // Schrijf een functie genaamd typeOfEmail, die een emailadres verwacht. De functie checkt of het emailadres een novi domein heeft (medewerker), een novi-education domein (student), of extern domein (zoals gmail of outlook)
@@ -20,6 +29,21 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+function typeOfEmail(email) {
+    const getIndexNumber = email.indexOf("@");
+    const domain = email.substring(getIndexNumber + 1);
+
+    if (domain === "novi-education.nl") {
+        return "Student"
+    } else if (domain === "novi.nl") {
+        return "Medewerker"
+    } else {
+    return "Extern"}
+}
+
+    const  email1 = typeOfEmail("novi.nlaapjesk@outlook.com");
+    console.log(email1);
+
 
 
 /* Opdracht  3 */
@@ -28,6 +52,32 @@
 // * Er een @ in voorkomt
 // * Er géén , in voorkomt
 // * Er géén . in voorkomt als allerlaatste karakter (dus hotmail.com is valide, net als outlook.nl, maar outlooknl. niet)
+
+function checkEmailValidity (email){
+    const containsMonkeyTail= email.includes("@");
+    const noComma = email.includes (",");
+    const endsWithDot = email.lastIndexOf(".");
+
+    const checkDot = endsWithDot !==email.length -1
+
+    if  (containsMonkeyTail && !noComma && checkDot)   {
+        return "true"  }
+    else {return "false"}
+
+
+}
+const emailadres1 = checkEmailValidity("n.eeken@novi.nl")
+const emailadres2 = checkEmailValidity("tessmellink@novi.nl")
+const emailadres3 = checkEmailValidity("n.eekenanovi.nl")
+const emailadres4 = checkEmailValidity("n.eeken@novinl.")
+const emailadres5 = checkEmailValidity("tessmellink@novi,nl")
+
+console.log(emailadres1)
+console.log(emailadres2)
+console.log(emailadres3)
+console.log(emailadres4)
+console.log(emailadres5)
+
 // ---- Verwachte uitkomsten:
 // checkEmailValidity("n.eeken@novi.nl") geeft true - want @ en punt op de juiste plek
 // checkEmailValidity("tessmellink@novi.nl") geeft true - want @ en punt op de juiste plek
